@@ -1,6 +1,8 @@
 <script lang="ts">
-	let left = "0px",
-		top = "0px";
+	import Modal from "./components/modal.svelte";
+
+	let left = "0px";
+	let top = "0px";
 	let style = `left:${left};top:${top}`;
 
 	function getRandomCoordinates(
@@ -31,15 +33,15 @@
 		style = `left:${x}px;top:${y}px`;
 	}
 
-	let visible = false;
+	let showModal = false;
 
 	function toggleModal() {
-		visible = !visible;
+		showModal = !showModal;
 	}
 
-	let clear:any;
+	let clear: any;
 	$: {
-		if (visible == true) {
+		if (showModal == true) {
 			clear = setInterval(randomize, 500);
 		} else {
 			clearInterval(clear);
@@ -48,15 +50,7 @@
 </script>
 
 <main>
-	<div id="arenaModal" class:visible>
-		<div class="modal-header">
-			<button class="close" on:click={toggleModal}>X</button>
-		</div>
-		<div id="arena" class="modal-body">
-			<p id="random" {style}>{digit}</p>
-		</div>
-		<div class="modal-footer"></div>
-	</div>
+	<Modal visible={showModal} {style} {digit}></Modal>
 	<form action="" method="">
 		<label for="phone">Phone</label>
 		<input
@@ -71,23 +65,4 @@
 </main>
 
 <style>
-	#arenaModal {
-		visibility: hidden;
-		border: 1px solid black;
-		z-index: 2;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	}
-	.visible {
-		visibility: visible !important;
-	}
-	.modal-body {
-		height: 30vh;
-		position: relative;
-	}
-	.modal-body p {
-		position: absolute;
-		margin: 0;
-		padding: 0;
-		width: 20px;
-	}
 </style>
