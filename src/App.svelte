@@ -1,7 +1,7 @@
 <script lang="ts">
-	
-	let left = '0px', top = '0px';
-	let style=`left:${left};top:${top}`;
+	let left = "0px",
+		top = "0px";
+	let style = `left:${left};top:${top}`;
 
 	function getRandomCoordinates(
 		containerWidth: number,
@@ -12,17 +12,17 @@
 		return { x, y };
 	}
 
-	function getRandomDigits () {
+	function getRandomDigits() {
 		return Math.floor(Math.random() * 10);
 	}
 
 	let digit = getRandomDigits();
 
-	function handleClick() {
+	function randomize() {
 		digit = getRandomDigits();
 
 		const container: any = document.getElementById("arena");
-		
+
 		const containerWidth = container.clientWidth;
 		const containerHeight = container.clientHeight;
 
@@ -31,37 +31,38 @@
 		style = `left:${x}px;top:${y}px`;
 	}
 
+	let visible = false;
+
+	function toggleModal() {
+		visible = !visible;
+	}
+
+	let clear:any;
+	$: {
+		if (visible == true) {
+			clear = setInterval(randomize, 500);
+		} else {
+			clearInterval(clear);
+		}
+	}
 </script>
 
 <main>
-	<div
-		class="modal fade"
-		id="staticBackdrop"
-		data-bs-backdrop="static"
-		data-bs-keyboard="false"
-		tabindex="-1"
-		aria-labelledby="staticBackdropLabel"
-		aria-hidden="true"
-	>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header"> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-				<div id="arena" class="modal-body">
-					<p id="random" {style}>{digit}</p>
-				</div>
-				<div class="modal-footer">
-					<button on:click={handleClick}></button>
-				</div>
-			</div>
+	<div id="arenaModal" class:visible>
+		<div class="modal-header">
+			<button class="close" on:click={toggleModal}>X</button>
 		</div>
+		<div id="arena" class="modal-body">
+			<p id="random" {style}>{digit}</p>
+		</div>
+		<div class="modal-footer"></div>
 	</div>
 	<form action="" method="">
 		<label for="phone">Phone</label>
 		<input
 			id="phone"
-			data-bs-toggle="modal"
-			data-bs-target="#staticBackdrop"
 			autocomplete="off"
+			on:click={toggleModal}
 			type="number"
 		/>
 
@@ -70,6 +71,15 @@
 </main>
 
 <style>
+	#arenaModal {
+		visibility: hidden;
+		border: 1px solid black;
+		z-index: 2;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	}
+	.visible {
+		visibility: visible !important;
+	}
 	.modal-body {
 		height: 30vh;
 		position: relative;
