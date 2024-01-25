@@ -7,45 +7,81 @@
 
 	export let style = "";
 	export let digit = 0;
+
+	let nums: any[] = [];
+
+	function handleShoot (event:any) {
+		nums = [...nums, event.target.innerText];
+	}
+
+	function handleDelete () {
+		nums.pop();
+		nums = nums;
+	}
+
+	$: {
+		console.log(nums);
+	}
 </script>
 
 <main>
 	<div id="arenaModal" class:visible>
-		<div class="modal-header">
-			<button class="closeBtn" on:click={closeModal}>X</button>
+		<div class="modalHeader">
+			<div>
+				<button class="closeBtn" on:click={closeModal}>Close</button>
+			</div>
 		</div>
-		<div id="arena" class="modal-body">
-			<p id="random" {style}>{digit}</p>
+		<div id="arena" class="modalBody">
+			<button id="random" {style} on:click={handleShoot}>{digit}</button>
 		</div>
-		<div class="modal-footer"></div>
+		<div class="modalFooter">
+			{nums.join(' ')}
+			<div>
+				<button on:click={handleDelete}>Saili</button>
+			</div>
+		</div>
 	</div>
 </main>
 
 <style>
 	#arenaModal {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 40vw;
-		height: 40vh;
-		transform: translate(-50%, -50%);
 		visibility: hidden;
 		background: #fff;
 		border: 1px solid black;
-		z-index: 2;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+		color: black;
 	}
 	.visible {
 		visibility: visible !important;
 	}
-	.modal-body {
-		height: 30vh;
-		position: relative;
+
+	.modalHeader {
+		height: 10%;
+		border: 1px solid black;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 	}
-	.modal-body p {
+
+	.modalBody {
+		position: relative;
+		height: 40vh;
+		width: 30vw;
+	}
+	.modalBody button {
 		position: absolute;
 		margin: 0;
 		padding: 0;
 		width: 20px;
+	}
+	.modalFooter {
+		height: 10%;
+		border: 1px solid black;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	#random:hover {
+		cursor: crosshair;
 	}
 </style>
