@@ -1,4 +1,7 @@
 <script lang="ts">
+
+	import {nums} from '../store'
+
 	export let visible = false;
 
 	function closeModal() {
@@ -11,21 +14,20 @@
 	export let digit1 = 0;
 	export let digit2 = 0;
 
-	let nums: any[] = [];
-
 	function handleShoot (event:any) {
-		nums = [...nums, event.target.innerText];
+		$nums.push(event.target.innerText);
+		$nums = $nums;
 	}
 
 	function handleDelete () {
-		nums.pop();
-		nums = nums;
+		$nums.pop();
+		$nums = $nums;
 	}
 
 	let ok = false;
 
 	$: {
-		nums.length >= 10 ? ok = true: ok = false;
+		$nums.length >= 10 ? ok = true: ok = false;
 	}
 
 </script>
@@ -34,7 +36,6 @@
 	<div id="arenaModal" class:visible>
 		<div class="modalHeader">
 			<div>
-				<button class="closeBtn" on:click={closeModal}>Close</button>
 			</div>
 		</div>
 		<div id="arena" class="modalBody">
@@ -42,7 +43,7 @@
 			<button class="random" style={style2} on:click={handleShoot}>{digit2}</button>
 		</div>
 		<div class="modalFooter">
-			{@html nums.length ? nums.join(' '): '<div></div>'}
+			{@html $nums.length ? $nums.join(' '): '<div></div>'}
 			<div>
 				<button id="okBtn" class:ok on:click={closeModal}>OK</button>
 				<button on:click={handleDelete}>-</button>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Modal from "./components/modal.svelte";
 
+	import {nums} from "./store";
+
 	let left = "0px";
 	let top = "0px";
 	let style1 = `left:${left};top:${top}`;
@@ -46,6 +48,7 @@
 
 	let clear: any;
 	$: {
+		console.log("Hi")
 		if (showModal == true) {
 			clear = setInterval(randomize, 1500);
 		} else {
@@ -63,6 +66,7 @@
 			autocomplete="off"
 			on:click={toggleModal}
 			type="number"
+			value={$nums.join('')}
 		/>
 
 		<input type="button" value="submit" />
