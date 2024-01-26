@@ -22,6 +22,12 @@
 		nums = nums;
 	}
 
+	let ok = false;
+
+	$: {
+		nums.length >= 10 ? ok = true: ok = false;
+	}
+
 </script>
 
 <main>
@@ -36,9 +42,10 @@
 			<button class="random" style={style2} on:click={handleShoot}>{digit2}</button>
 		</div>
 		<div class="modalFooter">
-			{nums.join(' ')}
+			{@html nums.length ? nums.join(' '): '<div></div>'}
 			<div>
-				<button on:click={handleDelete}>Saili</button>
+				<button id="okBtn" class:ok on:click={closeModal}>OK</button>
+				<button on:click={handleDelete}>-</button>
 			</div>
 		</div>
 	</div>
@@ -58,6 +65,14 @@
 	}
 	.visible {
 		visibility: visible !important;
+	}
+
+	.ok {
+		display: block !important;
+	}
+
+	#okBtn {
+		display: none;
 	}
 
 	.modalHeader {
