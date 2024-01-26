@@ -47,7 +47,7 @@
 	let clear: any;
 	$: {
 		if (showModal == true) {
-			clear = setInterval(randomize, 2000);
+			clear = setInterval(randomize, 1500);
 		} else {
 			clearInterval(clear);
 		}
