@@ -5,8 +5,11 @@
 		visible = false;
 	}
 
-	export let style = "";
-	export let digit = 0;
+	export let style1 = "";
+	export let style2 = "";
+
+	export let digit1 = 0;
+	export let digit2 = 0;
 
 	let nums: any[] = [];
 
@@ -19,9 +22,6 @@
 		nums = nums;
 	}
 
-	$: {
-		console.log(nums);
-	}
 </script>
 
 <main>
@@ -32,7 +32,8 @@
 			</div>
 		</div>
 		<div id="arena" class="modalBody">
-			<button id="random" {style} on:click={handleShoot}>{digit}</button>
+			<button class="random" style={style1} on:click={handleShoot}>{digit1}</button>
+			<button class="random" style={style2} on:click={handleShoot}>{digit2}</button>
 		</div>
 		<div class="modalFooter">
 			{nums.join(' ')}
@@ -50,6 +51,10 @@
 		border: 1px solid black;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 		color: black;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 	.visible {
 		visibility: visible !important;
@@ -81,7 +86,7 @@
 		justify-content: space-between;
 	}
 
-	#random:hover {
+	.random:hover {
 		cursor: crosshair;
 	}
 </style>
