@@ -14,8 +14,10 @@
 	export let digit2 = 0;
 
 	function handleShoot(event: any) {
-		$nums.push(event.target.innerText);
-		$nums = $nums;
+		if ($nums.length < 10) {
+			$nums.push(event.target.innerText);
+			$nums = $nums;
+		}
 	}
 
 	function handleDelete() {
@@ -36,12 +38,8 @@
 			<div></div>
 		</div>
 		<div id="arena" class="modalBody">
-			<button class="random" style={style1} on:click={handleShoot}
-				>{digit1}</button
-			>
-			<button class="random" style={style2} on:click={handleShoot}
-				>{digit2}</button
-			>
+			<button class="random" style={style1} on:click={handleShoot}>{digit1}</button>
+			<button class="random" style={style2} on:click={handleShoot}>{digit2}</button>
 		</div>
 		<div class="modalFooter">
 			{@html $nums.length ? $nums.join(" ") : "<div></div>"}

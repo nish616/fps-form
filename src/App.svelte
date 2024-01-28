@@ -3,30 +3,17 @@
 
 	import { nums } from "./store";
 
-	let left = "0px";
-	let top = "0px";
-	let style1 = `left:${left};top:${top}`;
-	let style2 = `left:${left};top:${top}`;
+	import {getRandomCoordinates, getRandomDigits} from "./lib/common"
 
-	function getRandomCoordinates(
-		containerWidth: number,
-		containerHeight: number,
-	) {
-		const x = Math.floor(Math.random() * (containerWidth - 20));
-		const y = Math.floor(Math.random() * (containerHeight - 20));
-		return { x, y };
-	}
+	let style1 = 'left:0px;top:0px';
+	let style2 = 'left:0px;top:0px';
 
-	function getRandomDigits() {
-		return Math.floor(Math.random() * 10);
-	}
-
-	let digit1 = getRandomDigits();
-	let digit2 = getRandomDigits();
+	let digit1 = getRandomDigits(10);
+	let digit2 = getRandomDigits(10);
 
 	function randomize() {
-		digit1 = getRandomDigits();
-		digit2 = getRandomDigits();
+		digit1 = getRandomDigits(10);
+		digit2 = getRandomDigits(10);
 
 		const container: any = document.getElementById("arena");
 
@@ -52,9 +39,9 @@
 		showModal = !showModal;
 	}
 
-	let clear: any;
+	let clear: number;
 	$: {
-		if (showModal == true) {
+		if (showModal) {
 			clear = setInterval(randomize, 1500);
 		} else {
 			clearInterval(clear);
