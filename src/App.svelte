@@ -47,6 +47,11 @@
 			clearInterval(clear);
 		}
 	}
+
+	function handleSubmit () {
+		alert("Success!");
+		$nums = [];
+	}
 </script>
 
 <main>
@@ -61,7 +66,7 @@
 			value={$nums.join("")}
 		/>
 
-		<input type="button" value="submit" />
+		<input type="submit" value="submit" on:click|preventDefault={handleSubmit} />
 	</form>
 </main>
 
