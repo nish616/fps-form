@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Modal from "./components/modal.svelte";
 
-	import {nums} from "./store";
+	import { nums } from "./store";
 
 	let left = "0px";
 	let top = "0px";
@@ -33,8 +33,14 @@
 		const containerWidth = container.clientWidth;
 		const containerHeight = container.clientHeight;
 
-		const randomCoordinate1 = getRandomCoordinates(containerWidth, containerHeight);
-		const randomCoordinate2 = getRandomCoordinates(containerWidth, containerHeight);
+		const randomCoordinate1 = getRandomCoordinates(
+			containerWidth,
+			containerHeight,
+		);
+		const randomCoordinate2 = getRandomCoordinates(
+			containerWidth,
+			containerHeight,
+		);
 
 		style1 = `left:${randomCoordinate1.x}px;top:${randomCoordinate1.y}px`;
 		style2 = `left:${randomCoordinate2.x}px;top:${randomCoordinate2.y}px`;
@@ -48,7 +54,6 @@
 
 	let clear: any;
 	$: {
-		console.log("Hi")
 		if (showModal == true) {
 			clear = setInterval(randomize, 1500);
 		} else {
@@ -66,7 +71,7 @@
 			autocomplete="off"
 			on:click={toggleModal}
 			type="number"
-			value={$nums.join('')}
+			value={$nums.join("")}
 		/>
 
 		<input type="button" value="submit" />

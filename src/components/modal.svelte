@@ -1,6 +1,5 @@
 <script lang="ts">
-
-	import {nums} from '../store'
+	import { nums } from "../store";
 
 	export let visible = false;
 
@@ -14,12 +13,12 @@
 	export let digit1 = 0;
 	export let digit2 = 0;
 
-	function handleShoot (event:any) {
+	function handleShoot(event: any) {
 		$nums.push(event.target.innerText);
 		$nums = $nums;
 	}
 
-	function handleDelete () {
+	function handleDelete() {
 		$nums.pop();
 		$nums = $nums;
 	}
@@ -27,23 +26,25 @@
 	let ok = false;
 
 	$: {
-		$nums.length >= 10 ? ok = true: ok = false;
+		$nums.length >= 10 ? (ok = true) : (ok = false);
 	}
-
 </script>
 
 <main>
 	<div id="arenaModal" class:visible>
 		<div class="modalHeader">
-			<div>
-			</div>
+			<div></div>
 		</div>
 		<div id="arena" class="modalBody">
-			<button class="random" style={style1} on:click={handleShoot}>{digit1}</button>
-			<button class="random" style={style2} on:click={handleShoot}>{digit2}</button>
+			<button class="random" style={style1} on:click={handleShoot}
+				>{digit1}</button
+			>
+			<button class="random" style={style2} on:click={handleShoot}
+				>{digit2}</button
+			>
 		</div>
 		<div class="modalFooter">
-			{@html $nums.length ? $nums.join(' '): '<div></div>'}
+			{@html $nums.length ? $nums.join(" ") : "<div></div>"}
 			<div>
 				<button id="okBtn" class:ok on:click={closeModal}>OK</button>
 				<button on:click={handleDelete}>-</button>
@@ -67,15 +68,12 @@
 	.visible {
 		visibility: visible !important;
 	}
-
 	.ok {
 		display: block !important;
 	}
-
 	#okBtn {
 		display: none;
 	}
-
 	.modalHeader {
 		height: 10%;
 		border: 1px solid black;
@@ -83,7 +81,6 @@
 		justify-content: flex-end;
 		align-items: center;
 	}
-
 	.modalBody {
 		position: relative;
 		height: 40vh;
@@ -101,7 +98,6 @@
 		display: flex;
 		justify-content: space-between;
 	}
-
 	.random:hover {
 		cursor: crosshair;
 	}
