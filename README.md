@@ -1,6 +1,5 @@
-# FPS Form
+# FPS Form [![Netlify Status](https://api.netlify.com/api/v1/badges/27e8daa4-3312-4941-ba4e-d522c8f336cd/deploy-status)](https://app.netlify.com/sites/eclectic-empanada-71663d/deploys)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/27e8daa4-3312-4941-ba4e-d522c8f336cd/deploy-status)](https://app.netlify.com/sites/eclectic-empanada-71663d/deploys)
 A phone number entry UX for an fps gamer!
 
 # Local Setup
