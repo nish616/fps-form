@@ -2,9 +2,6 @@
 
 [Click Here](https://master--eclectic-empanada-71663d.netlify.app/)
 
-A phone number entry UX for an fps gamer!
+An interesting phone number entry UX for an fps gamer and the worst possible UX for a normal person!
 
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+Shoot the numbers down if you want to enter your phone number.
