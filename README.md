@@ -2,10 +2,6 @@
 
 A phone number entry UX for an fps gamer!
 
-# Local Setup
-```
-npm run dev
-```
 
 ## Recommended IDE Setup
 
